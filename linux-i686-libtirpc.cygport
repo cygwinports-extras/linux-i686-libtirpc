@@ -1,0 +1,24 @@
+CROSS_HOST="i686-pc-linux-gnu"
+inherit cross
+
+NAME="linux-i686-libtirpc"
+VERSION=0.2.4
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="Transport-Independent RPC library for Linux i686 toolchain"
+DESCRIPTION="TI-RPC provides a library that implements Transport Independent
+Remote Procedure Calls. It supports RPCs over IPv4, IPv6, as well as local
+unix sockets."
+HOMEPAGE="http://libtirpc.sourceforge.net"
+SRC_URI="mirror://sourceforge/libtirpc/libtirpc-${VERSION}.tar.bz2"
+SRC_DIR="libtirpc-${VERSION}"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/libtirpc.git/plain/libtirpc-0.2.5-rc3.patch
+"
+
+CYGCONF_ARGS="--enable-gssapi"
+
+src_install () {
+	cd ${B}
+	cyginstall dist_sysconf_DATA= dist_man{3,5}_MANS=
+}
